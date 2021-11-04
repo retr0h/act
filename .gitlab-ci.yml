@@ -1,0 +1,76 @@
+---
+stages:
+  - static-analysis
+  - test
+  - code-quality
+  - build-and-push
+
+black:
+  stage: static-analysis
+  image: pipelinecomponents/black:latest
+  script:
+    - black --check --diff .
+
+flake8:
+  stage: static-analysis
+  image: pipelinecomponents/flake8:latest
+  script:
+    - flake8 --verbose .
+
+cov:
+  image: python:3.8.5-slim-buster
+  stage: static-analysis
+  script:
+    - apt-get update -y
+    - apt install -y make
+    - make dep cov
+  artifacts:
+    reports:
+      cobertura: coverage-reports/*.xml
+    paths:
+      - coverage-reports/*.xml
+    when: always
+  allow_failure: True
+
+test:
+  image: python:3.8.5-slim-buster
+  stage: test
+  script:
+    - apt-get update -y
+    - apt install -y make
+    - make dep unit
+  artifacts:
+    reports:
+      junit: xunit-reports/*.xml
+    paths:
+      - xunit-reports/*.xml
+    when: always
+
+sonar-scanner:
+  stage: code-quality
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: 0
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  before_script: []
+  script:
+    - sonar-scanner
+
+pip:
+  stage: build-and-push
+  image: python:3.9.2
+  script:
+    - git fetch
+    - pip3 install poetry
+    - pip3 install poetry-dynamic-versioning
+    - poetry config repositories.platform-pypi-local "https://artifactory.aws.corelight.io/artifactory/api/pypi/platform-pypi-local/"
+    - poetry publish --build -n -r "platform-pypi-local"
+  artifacts:
+    paths:
+      - 'act/dist/'

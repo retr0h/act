@@ -1,0 +1,9 @@
+*.egg-info/
+*.py[rcod]
+.cache/
+.coverage
+.venv/
+coverage-reports/
+dist/
+htmlcov/
+xunit-reports/
