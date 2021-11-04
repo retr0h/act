@@ -1,0 +1,33 @@
+---
+a:
+  env: {}
+  cmd: {}
+  needs:
+    - b
+b:
+  env: {}
+  cmd: {}
+  needs:
+    - c
+c:
+  env: {}
+  cmd: {}
+  needs:
+    - d
+d:
+  env: {}
+  cmd: {}
+  needs:
+    - e
+e:
+  env: {}
+  cmd: {}
+f:
+  env: {}
+  cmd: {}
+  needs:
+    - a
+    - b
+    - c
+    - d
+    - e

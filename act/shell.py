@@ -21,7 +21,12 @@ logger.configure()
 def main(ctx, debug):  # pragma: no cover
     """
     \b
-    act - A python task runner.
+               _
+     ___  ___ | |_
+    | .'||  _||  _|
+    |__,||___||_|
+
+    act - A simple task runner.
 
     """  # noqa: H404,H405
     ctx.obj = {}
@@ -29,4 +34,4 @@ def main(ctx, debug):  # pragma: no cover
     ctx.obj["args"]["debug"] = debug
 
 
-main.add_command(cmd.todo.todo)
+main.add_command(cmd.graph.graph)

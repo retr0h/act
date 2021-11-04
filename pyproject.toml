@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "act"
-version = "0.0.0"
-description = "act - A python task runner."
+version = "0.0.0.post2.dev0+f632f4e"
+description = "act - A simple task runner."
 authors = [
     "נυαη נυαηѕση <@retr0h>",
 ]
@@ -9,9 +9,9 @@ maintainers = [
     "נυαη נυαηѕση <@retr0h>",
 ]
 readme = "README.md"
-homepage = "https://maestro.corelight.io/elysium/act"
-repository = "https://maestro.corelight.io/elysium/act"
-documentation = "https://maestro.corelight.io/elysium/act/-/tree/main/doc"
+homepage = "https://github.com/retr0h/act"
+repository = "https://github.com/retr0h/act"
+documentation = "https://github.com/retr0h/act"
 packages = [
     { include = "act" },
 ]
@@ -21,6 +21,8 @@ python = "^3.6"
 click = "*"
 click-completion = "*"
 click-help-colors = "*"
+toposort = "*"
+PyYAML = "*"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
@@ -58,13 +60,14 @@ omit = [
 relative_files = true
 
 [tool.coverage.report]
-fail_under = 100
+#fail_under = 100
+fail_under = 95
 
 [tool.isort]
 profile = "open_stack"
 
 [tool.poetry-dynamic-versioning]
-enable = true
+enable = false
 style = "pep440"
 
 [tool.poetry-dynamic-versioning.substitution]
