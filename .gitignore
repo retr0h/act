@@ -3,7 +3,6 @@
 .cache/
 .coverage
 .venv/
-coverage-reports/
+coverage.*
 dist/
 htmlcov/
-xunit-reports/

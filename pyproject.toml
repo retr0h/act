@@ -62,7 +62,7 @@ omit = [
 relative_files = true
 
 [tool.coverage.report]
-fail_under = 100
+fail_under = 93
 
 [tool.isort]
 profile = "open_stack"
@@ -81,7 +81,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poe.tasks]
 lint = "flake8"
 unit = "py.test -vv"
-cov = "py.test --cov act --cov-report term-missing --cov-report html --showlocals"
+cov = "py.test --cov act --cov-report term-missing --cov-report xml --showlocals"
 format = [
     {cmd = "black ."},
     {cmd = "isort ."},

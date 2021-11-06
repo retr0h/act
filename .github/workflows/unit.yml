@@ -1,11 +1,9 @@
 ---
 name: Unit Test
-
 on: [pull_request]
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
 
     steps:
