@@ -3,10 +3,6 @@ import logging
 import click
 import click_help_colors
 
-from act import console
-from act import exceptions
-from act import logger
-
 LOG = logging.getLogger(__name__)
 
 
@@ -42,12 +38,3 @@ def get_command_args(ctx):
     )
 
     return args
-
-
-def execute_commands(cmd, task):
-    with console.konsole.status(f"[bold green]Executing {task} commands..."):
-        try:
-            cmd.run()
-            LOG.info(f"Completed {task} commands.")
-        except exceptions.ExecCalledProcessError as e:
-            logger.sysexit_with_message(f"\n{e.stderr}\n{e}")

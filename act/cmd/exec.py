@@ -5,10 +5,21 @@ import click
 from act import cmd_util
 from act import command
 from act import config
+from act import console
+from act import exceptions
 from act import logger
 from act import topo
 
 LOG = logging.getLogger(__name__)
+
+
+def execute_commands(cmd, task):
+    with console.konsole.status(f"[bold green]Executing {task} commands..."):
+        try:
+            cmd.run()
+            LOG.info(f"Completed {task} commands.")
+        except exceptions.ExecCalledProcessError as e:
+            logger.sysexit_with_message(f"\n{e.stderr}\n{e}")
 
 
 @cmd_util.click_command_ex()
@@ -30,4 +41,4 @@ def exec(ctx, phase):
         for task in group:
             section = c.data.get("command")
             cmd = command.Command(section, config=c)
-            cmd_util.execute_commands(cmd, task)
+            execute_commands(cmd, task)
