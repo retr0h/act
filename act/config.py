@@ -8,7 +8,6 @@ class Config:
         self._command_args = command_args
 
         self._stream = self._command_args["stream"]
-        self.data = self._get_config()
 
     @property
     def debug(self):
@@ -20,7 +19,7 @@ class Config:
 
     @property
     @functools.lru_cache()
-    def config(self):
+    def data(self):
         return self._get_config()
 
     def _get_config(self):

@@ -62,7 +62,7 @@ omit = [
 relative_files = true
 
 [tool.coverage.report]
-fail_under = 93
+fail_under = 100
 
 [tool.isort]
 profile = "open_stack"

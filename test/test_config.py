@@ -12,11 +12,8 @@ def _instance(command_args):
 @pytest.mark.parametrize(
     "attr, x",
     [
-        # self.data = self._get_config()
         ("debug", False),
         ("env", {}),
-        # def config(self):
-        # def command(self):
     ],
 )
 def test_config(fs, _instance, attr, x):
