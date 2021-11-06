@@ -80,8 +80,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poe.tasks]
 lint = "flake8"
-unit = "py.test -vv --junitxml=xunit-reports/xunit-result-act.xml"
-cov = "py.test --cov act --cov-report term-missing --cov-report xml:coverage-reports/coverage-act.xml --showlocals"
+unit = "py.test -vv"
+cov = "py.test --cov act --cov-report term-missing --cov-report html --showlocals"
 format = [
     {cmd = "black ."},
     {cmd = "isort ."},
