@@ -58,3 +58,21 @@ def test_get_topo_for(d, x):
 )
 def test_get_topo(d, x):
     assert x == topo.get_topo(d)
+
+
+@pytest.mark.parametrize(
+    "d",
+    [
+        dict(
+            a={"needs": ["b", "c"]},
+            b={"needs": ["b", "c"]},
+            c={"needs": ["b", "c"]},
+            d={"needs": ["b", "c"]},
+        ),
+    ],
+)
+def test_get_topo_raises_on_circular_dependencies(d):
+    with pytest.raises(SystemExit) as e:
+        topo.get_topo(d)
+
+    assert 1 == e.value.code
