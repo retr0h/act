@@ -39,6 +39,6 @@ def exec(ctx, phase):
 
     for group in topo.get_topo_for(phase, c.data):
         for task in group:
-            section = c.data.get("command")
+            section = c.data.get(phase)
             cmd = command.Command(section, config=c)
             execute_commands(cmd, task)
