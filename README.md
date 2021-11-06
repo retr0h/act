@@ -18,6 +18,10 @@ purpose framework for building CLI tools.
 
 ## Usage
 
+### Screenshot
+
+![Usage](img/demo.png?raw=true "Usage")
+
 ### exec
 
 Execute a particular phase:
