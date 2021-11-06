@@ -14,8 +14,6 @@ with fewer dependencies and setup.  However, I wanted to
 experiment with directed graphs, and a more general
 purpose framework for building CLI tools.
 
-.... rename to phaser
-
 [Poe the Poet]: https://github.com/nat-n/poethepoet
 
 ## Usage
