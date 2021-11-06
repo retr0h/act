@@ -20,17 +20,17 @@ purpose framework for building CLI tools.
 
 Execute a particular phase:
 
-    $ act exec <task>
+    $ act exec <phase>
 
 ### ls
 
-List the graph:
+List all phases:
 
     $ act graph ls
 
-List a specific task's graph:
+List a specific phase:
 
-    $ act graph ls <node>
+    $ act graph ls <phase>
 
 ## Testing
 
