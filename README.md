@@ -1,6 +1,6 @@
-[![Coverage](https://github.com/retr0h/act/actions/workflows/coverage.yml/badge.svg)](https://github.com/retr0h/act/actions/workflows/coverage.yml)
 [![Lint](https://github.com/retr0h/act/actions/workflows/lint.yml/badge.svg)](https://github.com/retr0h/act/actions/workflows/lint.yml)
 [![Unit Test](https://github.com/retr0h/act/actions/workflows/unit.yml/badge.svg)](https://github.com/retr0h/act/actions/workflows/unit.yml)
+[![codecov](https://codecov.io/gh/retr0h/act/branch/main/graph/badge.svg?token=BLPDRRJCUK)](https://codecov.io/gh/retr0h/act)
 
 # act
 
