@@ -1,33 +1,28 @@
 ---
-a:
-  env: {}
-  cmd: {}
+lint:
+  cmd: |
+    echo "lint"
+format:
+  cmd: |
+    echo "format"
+style:
+  cmd: |
+    echo "style"
+unit:
+  cmd: |
+    echo "unit"
+test:
+  cmd: |
+    echo "test"
   needs:
-    - b
-b:
-  env: {}
-  cmd: {}
+    - lint
+    - format
+    - unit
+# rework
+command:
+  cmd: |
+    echo "test"
   needs:
-    - c
-c:
-  env: {}
-  cmd: {}
-  needs:
-    - d
-d:
-  env: {}
-  cmd: {}
-  needs:
-    - e
-e:
-  env: {}
-  cmd: {}
-f:
-  env: {}
-  cmd: {}
-  needs:
-    - a
-    - b
-    - c
-    - d
-    - e
+    - lint
+    - format
+    - unit

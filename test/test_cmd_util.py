@@ -33,3 +33,17 @@ def test_click_command_ex(runner):
 
     assert not result.exception
     assert x == result.output.splitlines()
+
+
+def test_get_command_args(mocker):
+    ctx = mocker.Mock(
+        obj={
+            "args": {
+                "debug": True,
+                "stream": "stream",
+            }
+        }
+    )
+
+    x = dict(debug=True, stream="stream")
+    assert x == cmd_util.get_command_args(ctx)

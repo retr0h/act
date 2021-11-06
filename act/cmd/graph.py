@@ -2,13 +2,12 @@ import logging
 
 import click
 import rich
-import yaml
 
 from act import cmd_util
+from act import config
 from act import topo
 
 LOG = logging.getLogger(__name__)
-ACT_FILE = "act.yaml"
 
 
 @cmd_util.click_group_ex()
@@ -18,26 +17,18 @@ def graph(ctx):
 
 
 @cmd_util.click_command_ex()
-@click.option(
-    "--filename",
-    "stream",
-    default=ACT_FILE,
-    envvar="ACT_FILE",
-    type=click.File("rb"),
-    help=f"Path to the act file. [{ACT_FILE}]",
-)
-@click.argument("node", nargs=1, required=False)
+@click.argument("phase", nargs=1, required=False)
 @click.pass_context
-def ls(ctx, stream, node):
+def ls(ctx, phase):
     """List the graph."""
 
-    ctx.obj["args"]["stream"] = stream
-    d = yaml.safe_load(stream)
+    command_args = cmd_util.get_command_args(ctx)
+    c = config.Config(command_args)
 
-    if node:
-        output = topo.get_topo_for(node, d)
+    if phase:
+        output = topo.get_topo_for(phase, c.data)
     else:
-        output = topo.get_topo(d)
+        output = topo.get_topo(c.data)
 
     LOG.info("Task graph:")
     rich.pretty.pprint(output, expand_all=True)
