@@ -5,6 +5,7 @@ import click
 from act import cmd_util
 from act import command
 from act import config
+from act import logger
 from act import topo
 
 LOG = logging.getLogger(__name__)
@@ -18,9 +19,14 @@ def exec(ctx, phase):
 
     command_args = cmd_util.get_command_args(ctx)
     c = config.Config(command_args)
-    phase = topo.get_topo_for(phase, c.data)
 
-    for group in phase:
+    phases = c.data.keys()
+    if phase not in phases:
+        joined_phases = ", ".join(phases)
+        msg = f"Phase '{phase}' not found. Try one of: '{joined_phases}'."
+        logger.sysexit_with_message(msg)
+
+    for group in topo.get_topo_for(phase, c.data):
         for task in group:
             section = c.data.get("command")
             cmd = command.Command(section, config=c)
